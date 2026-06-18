@@ -111,6 +111,19 @@ h2 {
   transform: translateY(-50%);
 }
 
+.hero-overlay h1,
+.hero-overlay p {
+  color: #ffffff;
+}
+
+.catalog-section {
+  margin-top: 3rem;
+}
+
+.catalog-subtitle {
+  color: #6f5b4a;
+}
+
 /* 🌿 Cards feel softer + handmade */
 .card {
   border: none;

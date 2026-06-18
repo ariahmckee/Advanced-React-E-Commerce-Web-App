@@ -16,6 +16,11 @@ const API = axios.create({
 // 👇 centralizing endpoints keeps components clean
 export const getProducts = () => API.get("/products");
 
+export const getCategories = () => API.get("/products/categories");
+
+export const getProductsByCategory = (category) =>
+  API.get(`/products/category/${category}`);
+
 export const getProduct = (id) => API.get(`/products/${id}`);
 
 export const addProduct = (data) => API.post("/products", data);
