@@ -124,6 +124,10 @@ h2 {
   color: #6f5b4a;
 }
 
+.category-select {
+  min-width: 240px;
+}
+
 /* 🌿 Cards feel softer + handmade */
 .card {
   border: none;
