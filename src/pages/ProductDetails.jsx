@@ -1,0 +1,56 @@
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { getProduct } from "../services/api";
+import { Button } from "react-bootstrap";
+import { useCart } from "../context/useCart";
+import { useAuth } from "../context/useAuth";
+
+function ProductDetails() {
+  const { id } = useParams();
+  const { isAdmin } = useAuth();
+  const navigate = useNavigate();
+
+  const [product, setProduct] = useState(null);
+
+  useEffect(() => {
+    getProduct(id).then((res) => setProduct(res.data));
+  }, [id]);
+
+  const { addToCart } = useCart();
+
+  if (!product) return <p>Loading...</p>;
+
+  return (
+    <div>
+      <p className="d-flex">
+        <em>{product.category}</em> {/* fakestoreapi.com version */}
+        <span className="badge bg-secondary">{product.category}</span>  {/* fakestoreapi.com version */}
+        {/* had to change .category above for new API */}
+        {/* <span className="badge bg-secondary">{product.categoryID}</span>   */} {/* Platzi version */}
+      </p>
+      <h2 className="mb-3">{product.title}</h2>
+
+      <img
+        src={product.image} // fakestoreapi.com version
+        // src={product.images} // updated from .image for new API (Platzi)
+        alt={product.title}
+        style={{ height: "300px", objectFit: "contain" }}
+      />
+
+      <p className="mt-3">{product.description}</p>
+      <p>
+        <strong>${product.price.toFixed(2)}</strong>
+      </p>
+
+      <div className="d-flex gap-2 mb-3">
+        <Button onClick={() => addToCart(product)}>Add to Cart</Button>
+
+        {isAdmin && (
+          <Button onClick={() => navigate(`/edit-product/${id}`)}>Edit</Button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default ProductDetails;
