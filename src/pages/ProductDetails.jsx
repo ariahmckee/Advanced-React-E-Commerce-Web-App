@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { getProduct } from "../services/api";
 import { Button } from "react-bootstrap";
-import { useCart } from "../context/useCart";
 import { useAuth } from "../context/useAuth";
+import { addToCart } from "../store/cartSlice";
 
 function ProductDetails() {
   const { id } = useParams();
   const { isAdmin } = useAuth();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
     getProduct(id).then((res) => setProduct(res.data));
   }, [id]);
-
-  const { addToCart } = useCart();
 
   if (!product) return <p>Loading...</p>;
 
@@ -43,7 +43,7 @@ function ProductDetails() {
       </p>
 
       <div className="d-flex gap-2 mb-3">
-        <Button onClick={() => addToCart(product)}>Add to Cart</Button>
+        <Button onClick={() => dispatch(addToCart(product))}>Add to Cart</Button>
 
         {isAdmin && (
           <Button onClick={() => navigate(`/edit-product/${id}`)}>Edit</Button>

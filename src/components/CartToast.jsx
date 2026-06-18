@@ -1,14 +1,16 @@
 import { Toast, ToastContainer } from "react-bootstrap";
-import { useCart } from "../context/useCart";
+import { useDispatch, useSelector } from "react-redux";
+import { setShowToast } from "../store/cartSlice";
 
 function CartToast() {
-  const { showToast, setShowToast } = useCart();
+  const dispatch = useDispatch();
+  const showToast = useSelector((state) => state.cart.showToast);
 
   return (
     <ToastContainer position="bottom-end" className="p-3">
       <Toast
         show={showToast}
-        onClose={() => setShowToast(false)}
+        onClose={() => dispatch(setShowToast(false))}
         delay={2000}
         autohide
       >

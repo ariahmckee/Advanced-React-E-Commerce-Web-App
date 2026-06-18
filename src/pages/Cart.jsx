@@ -1,8 +1,14 @@
-import { useCart } from "../context/useCart";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Card } from "react-bootstrap";
+import {
+  addToCart,
+  decreaseQuantity,
+  removeFromCart,
+} from "../store/cartSlice";
 
 function Cart() {
-  const { cart, addToCart, decreaseQty, removeFromCart } = useCart();
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.items);
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -19,8 +25,7 @@ function Cart() {
         >
           {/* Image */}
           <img
-            // src={item.image}
-            src={item.images} // updated from .image for new API
+            src={item.image}
             alt={item.title}
             style={{
               height: "80px",
@@ -42,20 +47,23 @@ function Cart() {
 
             {/* BOTTOM ROW: controls */}
             <div className="d-flex justify-content-end gap-2 mt-2">
-              <Button size="sm" onClick={() => decreaseQty(item.id)}>
+              <Button
+                size="sm"
+                onClick={() => dispatch(decreaseQuantity(item.id))}
+              >
                 -
               </Button>
 
               <span>{item.quantity}</span>
 
-              <Button size="sm" onClick={() => addToCart(item)}>
+              <Button size="sm" onClick={() => dispatch(addToCart(item))}>
                 +
               </Button>
 
               <Button
                 size="sm"
                 variant="danger"
-                onClick={() => removeFromCart(item.id)}
+                onClick={() => dispatch(removeFromCart(item.id))}
               >
                 Remove
               </Button>

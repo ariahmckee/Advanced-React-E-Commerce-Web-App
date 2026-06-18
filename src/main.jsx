@@ -6,7 +6,6 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App.jsx";
 import "./styles.css";
-import { CartProvider } from "./context/CartContext.jsx";
 import { AuthProvider } from "./context/AuthContext";
 import { store } from "./store/store";
 
@@ -17,9 +16,7 @@ createRoot(document.getElementById("root")).render(
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
-          <CartProvider>
-            <App />
-          </CartProvider>
+          <App />
         </AuthProvider>
       </QueryClientProvider>
     </Provider>

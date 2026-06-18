@@ -1,13 +1,15 @@
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useCart } from "../context/useCart";
+import { useSelector } from "react-redux";
 import { useAuth } from "../context/useAuth";
 import LoginModal from "./LoginModal";
 
 function AppNavbar() {
   const [expanded, setExpanded] = useState(false);
-  const { cart } = useCart();
+  const cartCount = useSelector((state) =>
+    state.cart.items.reduce((total, item) => total + item.quantity, 0),
+  );
   const { isAdmin, logout } = useAuth();
   const [showModal, setShowModal] = useState(false);
 
@@ -28,7 +30,7 @@ function AppNavbar() {
         {/* RIGHT (MOBILE ONLY): Cart + Hamburger */}
         <div className="d-flex align-items-center gap-2 ms-auto d-lg-none">
           <Nav.Link as={Link} to="/cart" className="text-nowrap">
-            Cart ({cart.length})
+            Cart ({cartCount})
           </Nav.Link>
 
           <Navbar.Toggle />
@@ -65,7 +67,7 @@ function AppNavbar() {
           <div className="d-none d-lg-flex align-items-center gap-3 ms-auto">
             {/* Cart (desktop version) */}
             <Nav.Link as={Link} to="/cart" className="text-nowrap">
-              Cart ({cart.length})
+              Cart ({cartCount})
             </Nav.Link>
 
             {/* Login / Logout */}

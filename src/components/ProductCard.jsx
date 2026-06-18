@@ -1,9 +1,11 @@
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useCart } from "../context/useCart";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store/cartSlice";
 
 function ProductCard({ product }) {
-  const { addToCart } = useCart();
+  const dispatch = useDispatch();
+
   return (
     <Card className="h-100 shadow-sm product-card">
       <Card.Img
@@ -29,7 +31,7 @@ function ProductCard({ product }) {
           >
             View
           </Button>
-          <Button className="m-1" onClick={() => addToCart(product)}>
+          <Button className="m-1" onClick={() => dispatch(addToCart(product))}>
             Add to Cart
           </Button>
         </div>
