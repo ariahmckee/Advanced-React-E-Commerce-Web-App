@@ -13,6 +13,11 @@ function AppNavbar() {
   const { isAdmin, logout } = useAuth();
   const [showModal, setShowModal] = useState(false);
 
+  const handleHomeClick = () => {
+    setExpanded(false);
+    window.dispatchEvent(new Event("reset-home"));
+  };
+
   return (
     <Navbar
       expand="lg"
@@ -23,7 +28,7 @@ function AppNavbar() {
     >
       <Container fluid className="px-4">
         {/* LEFT: Logo */}
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="/" onClick={handleHomeClick}>
           FakeStore
         </Navbar.Brand>
 
@@ -40,7 +45,7 @@ function AppNavbar() {
         <Navbar.Collapse>
           {/* LEFT: Nav links */}
           <Nav className="text-center ms-3">
-            <Nav.Link as={Link} to="/" onClick={() => setExpanded(false)}>
+            <Nav.Link as={Link} to="/" onClick={handleHomeClick}>
               Home
             </Nav.Link>
 

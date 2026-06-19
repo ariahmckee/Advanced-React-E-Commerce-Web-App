@@ -137,9 +137,29 @@ h2 {
 }
 
 .product-card {
+  text-align: left;
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
+}
+
+.product-card .card-title {
+  font-size: 1.1rem;
+}
+
+.product-category {
+  color: #6f5b4a;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+}
+
+.product-description {
+  display: -webkit-box;
+  min-height: 4.35rem;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 .product-card:hover {

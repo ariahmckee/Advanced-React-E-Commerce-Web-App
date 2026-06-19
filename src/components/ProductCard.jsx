@@ -6,6 +6,7 @@ import ProductImage from "./ProductImage";
 
 function ProductCard({ product }) {
   const dispatch = useDispatch();
+  const rating = product.rating?.rate ?? "N/A";
 
   return (
     <Card className="h-100 shadow-sm product-card">
@@ -19,7 +20,12 @@ function ProductCard({ product }) {
       <Card.Body className="d-flex flex-column">
         <Card.Title>{product.title}</Card.Title>
 
-        <Card.Text>${product.price.toFixed(2)}</Card.Text>
+        <p className="product-category">{product.category}</p>
+        <p className="fw-semibold mb-2">${product.price.toFixed(2)}</p>
+        <p className="mb-2">Rating: {rating}</p>
+        <Card.Text className="product-description">
+          {product.description}
+        </Card.Text>
 
         {/* flex-grow pushes button down */}
         <div className="mt-auto">

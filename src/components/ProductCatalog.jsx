@@ -12,6 +12,7 @@ import ProductCard from "./ProductCard";
 
 function ProductCatalog() {
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const isShowingAllProducts = selectedCategory === "all";
 
   const {
     data: categories = [],
@@ -33,7 +34,7 @@ function ProductCatalog() {
     queryKey: ["products", selectedCategory],
     queryFn: async () => {
       const response =
-        selectedCategory === "all"
+        isShowingAllProducts
           ? await getProducts()
           : await getProductsByCategory(selectedCategory);
 
@@ -53,7 +54,9 @@ function ProductCatalog() {
         <div>
           <h2 className="mb-1">Shop the Collection</h2>
           <p className="catalog-subtitle mb-0">
-            Browse {products.length} products across {categories.length} categories.
+            {isShowingAllProducts
+              ? `Browse ${products.length} products across ${categories.length} categories.`
+              : `Browse ${products.length} products.`}
           </p>
         </div>
 

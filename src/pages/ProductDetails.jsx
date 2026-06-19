@@ -24,10 +24,7 @@ function ProductDetails() {
   return (
     <div>
       <p className="d-flex">
-        <em>{product.category}</em> {/* fakestoreapi.com version */}
-        <span className="badge bg-secondary">{product.category}</span>  {/* fakestoreapi.com version */}
-        {/* had to change .category above for new API */}
-        {/* <span className="badge bg-secondary">{product.categoryID}</span>   */} {/* Platzi version */}
+        <span className="badge bg-secondary">{product.category}</span>
       </p>
       <h2 className="mb-3">{product.title}</h2>
 
