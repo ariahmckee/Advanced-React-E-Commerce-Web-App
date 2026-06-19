@@ -162,6 +162,42 @@ h2 {
   -webkit-line-clamp: 3;
 }
 
+.rating-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+  color: #7a5a2a;
+  font-size: 0.95rem;
+}
+
+.rating-stars__icons {
+  display: inline-flex;
+  gap: 0.12rem;
+}
+
+.rating-stars__star {
+  width: 1rem;
+  height: 1rem;
+}
+
+.rating-stars__star-empty {
+  fill: #efe3d2;
+  stroke: #b8892f;
+  stroke-width: 1.35;
+}
+
+.rating-stars__star-fill {
+  fill: #b8892f;
+  stroke: #8b5e3c;
+  stroke-width: 1.15;
+}
+
+.rating-stars__value {
+  color: #6f5b4a;
+  line-height: 1;
+}
+
 .product-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 25px rgba(139, 94, 60, 0.25); /* warm glow */

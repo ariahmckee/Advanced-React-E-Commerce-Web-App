@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/cartSlice";
 import ProductImage from "./ProductImage";
+import RatingStars from "./RatingStars";
 
 function ProductCard({ product }) {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ function ProductCard({ product }) {
 
         <p className="product-category">{product.category}</p>
         <p className="fw-semibold mb-2">${product.price.toFixed(2)}</p>
-        <p className="mb-2">Rating: {rating}</p>
+        <RatingStars rating={rating} />
         <Card.Text className="product-description">
           {product.description}
         </Card.Text>
