@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Card } from "react-bootstrap";
+import { Alert, Button, Card } from "react-bootstrap";
 import {
   addToCart,
+  checkout,
+  clearCheckoutMessage,
   decreaseQuantity,
   removeFromCart,
 } from "../store/cartSlice";
@@ -9,13 +11,31 @@ import {
 function Cart() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.items);
+  const checkoutMessage = useSelector((state) => state.cart.checkoutMessage);
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalProducts = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  if (cart.length === 0) return <p>so much empty 😭</p>;
+  if (cart.length === 0) {
+    return (
+      <div className="text-start">
+        <h2>Your Cart</h2>
+        {checkoutMessage && (
+          <Alert
+            variant="success"
+            dismissible
+            onClose={() => dispatch(clearCheckoutMessage())}
+          >
+            {checkoutMessage}
+          </Alert>
+        )}
+        <p>Your cart is empty.</p>
+      </div>
+    );
+  }
 
   return (
-    <div>
+    <div className="text-start">
       <h2>Your Cart</h2>
 
       {cart.map((item) => (
@@ -72,8 +92,10 @@ function Cart() {
         </Card>
       ))}
 
-      <div className="d-flex justify-content-end mt-3 me-4">
+      <div className="cart-summary d-flex flex-column align-items-end gap-2 mt-3 me-4">
+        <h4>Total Products: {totalProducts}</h4>
         <h4>Total: ${total.toFixed(2)}</h4>
+        <Button onClick={() => dispatch(checkout())}>Checkout</Button>
       </div>
     </div>
   );

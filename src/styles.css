@@ -147,6 +147,10 @@ h2 {
   box-shadow: 0 12px 25px rgba(139, 94, 60, 0.25); /* warm glow */
 }
 
+.cart-summary h4 {
+  margin-bottom: 0;
+}
+
 /* 🌿 Buttons */
 .btn-primary {
   background-color: var(--accent);
