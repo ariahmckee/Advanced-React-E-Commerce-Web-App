@@ -7,6 +7,7 @@ import {
   decreaseQuantity,
   removeFromCart,
 } from "../store/cartSlice";
+import ProductImage from "../components/ProductImage";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ function Cart() {
           className="mb-3 p-3 d-flex flex-column flex-sm-row gap-3"
         >
           {/* Image */}
-          <img
+          <ProductImage
             src={item.image}
             alt={item.title}
             style={{

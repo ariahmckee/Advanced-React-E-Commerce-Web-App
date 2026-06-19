@@ -2,16 +2,16 @@ import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/cartSlice";
+import ProductImage from "./ProductImage";
 
 function ProductCard({ product }) {
   const dispatch = useDispatch();
 
   return (
     <Card className="h-100 shadow-sm product-card">
-      <Card.Img
-        variant="top"
+      <ProductImage
         src={product.image} // fakestoreapi.com version
-        // src={product.images} // changed from .image for new API (Platzi)
+        alt={product.title}
         className="p-3"
         style={{ height: "200px", objectFit: "contain" }}
       />

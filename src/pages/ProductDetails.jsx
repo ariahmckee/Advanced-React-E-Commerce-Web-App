@@ -5,6 +5,7 @@ import { getProduct } from "../services/api";
 import { Button } from "react-bootstrap";
 import { useAuth } from "../context/useAuth";
 import { addToCart } from "../store/cartSlice";
+import ProductImage from "../components/ProductImage";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -30,9 +31,8 @@ function ProductDetails() {
       </p>
       <h2 className="mb-3">{product.title}</h2>
 
-      <img
+      <ProductImage
         src={product.image} // fakestoreapi.com version
-        // src={product.images} // updated from .image for new API (Platzi)
         alt={product.title}
         style={{ height: "300px", objectFit: "contain" }}
       />
